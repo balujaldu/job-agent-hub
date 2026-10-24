@@ -82,7 +82,7 @@ npm run lint
 
 ## Deployment
 
-The website goes on Vercel (root `web/`, env `API_URL` read at build time by the rewrite). The backend goes on Render via `render.yaml` and `api/Dockerfile` (a Playwright base image whose version must match `playwright` in `requirements.txt`). Data lives in Supabase: Postgres through the session pooler, files in the private bucket `app-files`. Run a single backend instance, because jobs run in the in-process worker. Online config is env vars only, and secrets are `sync: false` in `render.yaml`.
+The website goes on Vercel (root `web/`, env `API_URL` read at build time by the rewrite). The backend goes on Render via `render.yaml` and `api/Dockerfile` (a Playwright base image whose version must match `playwright` in `requirements.txt`). Data lives in Supabase: Postgres through the **session pooler** (`*.pooler.supabase.com`, user `postgres.<ref>`), because the direct `db.<ref>.supabase.co` host is IPv6-only and unreachable from Render. `production_problems()` rejects it. Files go in the private bucket `app-files`. Supabase's anon/authenticated roles have privileges on `public` revoked, so its auto-generated API can't read the app's tables. Run a single backend instance, because jobs run in the in-process worker. Online config is env vars only, and secrets are `sync: false` in `render.yaml`.
 
 ## Tests
 
