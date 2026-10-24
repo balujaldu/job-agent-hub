@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/api";
@@ -142,6 +143,11 @@ export default function LoginPage() {
         )}
       </form>
       <p className="animate-fade text-xs text-muted">Tailored resumes and emails, sent only when you approve.</p>
+      <nav className="animate-fade flex gap-4 text-xs text-muted" aria-label="Legal">
+        <Link href="/about" className="hover:text-fg">About</Link>
+        <Link href="/privacy" className="hover:text-fg">Privacy</Link>
+        <Link href="/terms" className="hover:text-fg">Terms</Link>
+      </nav>
     </div>
   );
 }
