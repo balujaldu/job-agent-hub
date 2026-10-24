@@ -1,0 +1,318 @@
+@import "tailwindcss";
+
+/* Theme: light by default, dark from the system setting, and data-theme="light|dark" on <html>
+   (set by ThemeToggle, remembered in localStorage) overrides the system. */
+:root {
+  color-scheme: light;
+  --bg: #eef1f8;
+  --surface: rgba(255, 255, 255, 0.62);
+  --surface-2: rgba(255, 255, 255, 0.5);
+  --surface-strong: rgba(250, 251, 255, 0.82);
+  --line: rgba(15, 23, 42, 0.09);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-highlight: rgba(255, 255, 255, 0.9);
+  --shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 12px 32px -14px rgba(37, 46, 110, 0.28);
+  --shadow-lg: 0 24px 60px -20px rgba(37, 46, 110, 0.4);
+  --text: #0f172a;
+  --muted: #5b6478;
+  --accent: #4f46e5;
+  --accent-2: #0891b2;
+  --accent-text: #ffffff;
+  --ok: #047857;
+  --ok-bg: rgba(16, 185, 129, 0.14);
+  --warn: #a15c00;
+  --warn-bg: rgba(245, 158, 11, 0.16);
+  --bad: #c0262d;
+  --bad-bg: rgba(239, 68, 68, 0.12);
+  --info: #4338ca;
+  --info-bg: rgba(99, 102, 241, 0.13);
+  --neutral-bg: rgba(100, 116, 139, 0.13);
+  --inferred-bg: rgba(250, 204, 21, 0.22);
+  --inferred-line: #d4a106;
+  --blob-1: rgba(129, 140, 248, 0.6);
+  --blob-2: rgba(244, 114, 182, 0.42);
+  --blob-3: rgba(34, 211, 238, 0.45);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #060914;
+    --surface: rgba(23, 28, 48, 0.55);
+    --surface-2: rgba(255, 255, 255, 0.06);
+    --surface-strong: rgba(13, 17, 32, 0.84);
+    --line: rgba(255, 255, 255, 0.09);
+    --glass-border: rgba(255, 255, 255, 0.11);
+    --glass-highlight: rgba(255, 255, 255, 0.07);
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 40px -18px rgba(0, 0, 0, 0.7);
+    --shadow-lg: 0 30px 70px -20px rgba(0, 0, 0, 0.8);
+    --text: #e8ebf5;
+    --muted: #97a1b9;
+    --accent: #8b8dff;
+    --accent-2: #22d3ee;
+    --accent-text: #0a0c18;
+    --ok: #4ade9a;
+    --ok-bg: rgba(74, 222, 154, 0.12);
+    --warn: #fbbf4d;
+    --warn-bg: rgba(251, 191, 77, 0.13);
+    --bad: #ff8a8a;
+    --bad-bg: rgba(255, 99, 99, 0.13);
+    --info: #a5b4ff;
+    --info-bg: rgba(129, 140, 248, 0.15);
+    --neutral-bg: rgba(148, 163, 184, 0.13);
+    --inferred-bg: rgba(250, 204, 21, 0.14);
+    --inferred-line: #c99a00;
+    --blob-1: rgba(79, 70, 229, 0.55);
+    --blob-2: rgba(192, 38, 211, 0.32);
+    --blob-3: rgba(8, 145, 178, 0.42);
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #060914;
+  --surface: rgba(23, 28, 48, 0.55);
+  --surface-2: rgba(255, 255, 255, 0.06);
+  --surface-strong: rgba(13, 17, 32, 0.84);
+  --line: rgba(255, 255, 255, 0.09);
+  --glass-border: rgba(255, 255, 255, 0.11);
+  --glass-highlight: rgba(255, 255, 255, 0.07);
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 16px 40px -18px rgba(0, 0, 0, 0.7);
+  --shadow-lg: 0 30px 70px -20px rgba(0, 0, 0, 0.8);
+  --text: #e8ebf5;
+  --muted: #97a1b9;
+  --accent: #8b8dff;
+  --accent-2: #22d3ee;
+  --accent-text: #0a0c18;
+  --ok: #4ade9a;
+  --ok-bg: rgba(74, 222, 154, 0.12);
+  --warn: #fbbf4d;
+  --warn-bg: rgba(251, 191, 77, 0.13);
+  --bad: #ff8a8a;
+  --bad-bg: rgba(255, 99, 99, 0.13);
+  --info: #a5b4ff;
+  --info-bg: rgba(129, 140, 248, 0.15);
+  --neutral-bg: rgba(148, 163, 184, 0.13);
+  --inferred-bg: rgba(250, 204, 21, 0.14);
+  --inferred-line: #c99a00;
+  --blob-1: rgba(79, 70, 229, 0.55);
+  --blob-2: rgba(192, 38, 211, 0.32);
+  --blob-3: rgba(8, 145, 178, 0.42);
+}
+
+@theme inline {
+  --color-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-surface-strong: var(--surface-strong);
+  --color-line: var(--line);
+  --color-fg: var(--text);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-accent-fg: var(--accent-text);
+  --color-ok: var(--ok);
+  --color-ok-bg: var(--ok-bg);
+  --color-warn: var(--warn);
+  --color-warn-bg: var(--warn-bg);
+  --color-bad: var(--bad);
+  --color-bad-bg: var(--bad-bg);
+  --color-info: var(--info);
+  --color-info-bg: var(--info-bg);
+  --color-neutral-bg: var(--neutral-bg);
+  --color-inferred-bg: var(--inferred-bg);
+  --color-inferred-line: var(--inferred-line);
+  --font-sans: var(--font-inter), system-ui, sans-serif;
+}
+
+html {
+  background: var(--bg);
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  color: var(--text);
+  font-family: var(--font-sans);
+  isolation: isolate;
+}
+
+/* Soft drifting color field behind the glass. */
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  z-index: -1;
+  pointer-events: none;
+}
+
+body::before {
+  inset: -20vmax;
+  background:
+    radial-gradient(38vmax 38vmax at 18% 12%, var(--blob-1), transparent 62%),
+    radial-gradient(34vmax 34vmax at 88% 22%, var(--blob-2), transparent 62%),
+    radial-gradient(40vmax 40vmax at 55% 95%, var(--blob-3), transparent 62%);
+  filter: blur(40px);
+  animation: drift 28s ease-in-out infinite alternate;
+}
+
+body::after {
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, color-mix(in srgb, var(--bg) 35%, transparent));
+}
+
+::selection {
+  background: color-mix(in srgb, var(--accent) 30%, transparent);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--muted) 40%, transparent) transparent;
+}
+
+/* ---- Glass building blocks --------------------------------------------------- */
+
+@utility glass {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow), inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(22px) saturate(170%);
+  backdrop-filter: blur(22px) saturate(170%);
+}
+
+@utility glass-strong {
+  background: var(--surface-strong);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-lg), inset 0 1px 0 var(--glass-highlight);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
+}
+
+.card {
+  @apply glass rounded-2xl;
+}
+
+.text-gradient {
+  background: linear-gradient(120deg, var(--accent), var(--accent-2));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.input {
+  @apply w-full rounded-xl border border-line bg-surface-2 px-3.5 py-2.5 text-sm text-fg outline-none placeholder:text-muted;
+  transition: border-color 0.2s, box-shadow 0.2s, background-color 0.2s;
+}
+.input:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--accent) 35%, var(--line));
+}
+.input:focus {
+  border-color: var(--accent);
+  background: var(--surface-strong);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+.input:disabled {
+  @apply cursor-not-allowed opacity-70;
+}
+
+.btn,
+.btn-primary,
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 rounded-xl px-3.5 py-2 text-sm font-medium select-none disabled:cursor-not-allowed disabled:opacity-50;
+  transition: transform 0.18s ease, box-shadow 0.25s ease, background-color 0.2s ease, filter 0.2s ease, border-color 0.2s;
+}
+.btn:not(:disabled):hover,
+.btn-primary:not(:disabled):hover,
+.btn-danger:not(:disabled):hover {
+  transform: translateY(-1px);
+}
+.btn:not(:disabled):active,
+.btn-primary:not(:disabled):active,
+.btn-danger:not(:disabled):active {
+  transform: translateY(0) scale(0.98);
+}
+
+.btn {
+  @apply glass text-fg;
+}
+.btn:not(:disabled):hover {
+  background: var(--surface-strong);
+}
+
+.btn-primary {
+  color: #fff;
+  font-weight: 600;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  background-size: 160% 160%;
+  background-position: 0% 50%;
+  box-shadow: 0 10px 24px -10px color-mix(in srgb, var(--accent) 70%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+}
+.btn-primary:not(:disabled):hover {
+  background-position: 100% 50%;
+  box-shadow: 0 14px 30px -10px color-mix(in srgb, var(--accent) 80%, transparent), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+}
+
+.btn-danger {
+  @apply glass text-bad;
+}
+.btn-danger:not(:disabled):hover {
+  background: var(--bad-bg);
+}
+
+.label {
+  @apply mb-1.5 block text-xs font-semibold uppercase tracking-wider text-muted;
+}
+
+/* ---- Motion -------------------------------------------------------------------- */
+
+@keyframes drift {
+  0% { transform: translate3d(0, 0, 0) rotate(0deg) scale(1); }
+  50% { transform: translate3d(3vmax, -2vmax, 0) rotate(8deg) scale(1.05); }
+  100% { transform: translate3d(-2vmax, 3vmax, 0) rotate(-6deg) scale(1); }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-in-right {
+  from { opacity: 0.4; transform: translateX(40px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to { opacity: 1; transform: none; }
+}
+
+/* "backwards", not "both": a transform left applied after the animation would trap position:fixed
+   children (the job drawer) inside the animated element. */
+.animate-in { animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+.animate-fade { animation: fade-in 0.3s ease backwards; }
+.animate-slide { animation: slide-in-right 0.42s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+.animate-pop { animation: pop-in 0.35s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+.stagger > * { animation: fade-up 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) backwards; }
+.stagger > *:nth-child(2) { animation-delay: 0.05s; }
+.stagger > *:nth-child(3) { animation-delay: 0.1s; }
+.stagger > *:nth-child(4) { animation-delay: 0.15s; }
+.stagger > *:nth-child(n + 5) { animation-delay: 0.2s; }
+
+/* Applied briefly by ThemeToggle so the switch cross-fades instead of snapping. */
+html.theme-transition,
+html.theme-transition *,
+html.theme-transition *::before,
+html.theme-transition *::after {
+  transition: background-color 0.45s ease, color 0.45s ease, border-color 0.45s ease, box-shadow 0.45s ease, fill 0.45s ease !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
