@@ -83,6 +83,9 @@ npm run lint
 ## Deployment
 
 The website goes on Vercel (root `web/`, env `API_URL` read at build time by the rewrite). The backend goes on Render via `render.yaml` and `api/Dockerfile` (a Playwright base image whose version must match `playwright` in `requirements.txt`). Data lives in Supabase: Postgres through the **session pooler** (`*.pooler.supabase.com`, user `postgres.<ref>`), because the direct `db.<ref>.supabase.co` host is IPv6-only and unreachable from Render. `production_problems()` rejects it. Files go in the private bucket `app-files`. Supabase's anon/authenticated roles have privileges on `public` revoked, so its auto-generated API can't read the app's tables. Run a single backend instance, because jobs run in the in-process worker. Online config is env vars only, and secrets are `sync: false` in `render.yaml`.
+- **Live:** web https://job-agent-hub.vercel.app, API https://job-agent-hub-api-fpp1.onrender.com, Supabase project `kabigwmyxidpryswhave` (ap-southeast-1). Pushing to `main` deploys both.
+- **Vercel Hobby only deploys commits credited to the linked GitHub account (`balujaldu`).** The repo's `user.email` is that account's noreply address. The owner's Gmail maps to a different GitHub account (`balu2720`), and commits under it are BLOCKED.
+- **Vercel refuses vulnerable Next.js releases** (`VULNERABLE_NEXTJS_VERSION`). Keep `next` / `react` on patched versions.
 
 ## Tests
 
