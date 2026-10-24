@@ -92,6 +92,8 @@ def test_production_guard():
                   storage_backend="supabase", supabase_url="https://p.supabase.co", supabase_service_role_key="s")
     assert ok.production_problems() == []
     assert "SUPABASE_URL" in " ".join(Settings(storage_backend="supabase").production_problems())
+    direct = Settings(database_url="postgresql://postgres:pw@db.abc.supabase.co:5432/postgres", secret_key="x", encryption_key="k")
+    assert "Session pooler" in " ".join(direct.production_problems())
 
 
 def test_pdf_names():
