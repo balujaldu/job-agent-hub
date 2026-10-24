@@ -59,6 +59,9 @@ class Settings(BaseSettings):
         """Settings that would lose data or weaken security online. Empty in local development."""
         problems = []
         if self.database_url:
+            if "@db." in self.database_url and ".supabase.co" in self.database_url:
+                problems.append("DATABASE_URL uses Supabase's direct connection, which is IPv6-only and unreachable from "
+                                "Render. Use the Session pooler string (Connect -> Session pooler, host *.pooler.supabase.com).")
             if not self.encryption_key:
                 problems.append("ENCRYPTION_KEY must be set, or stored Gmail connections become unreadable after a redeploy.")
             if self.secret_key == "dev-insecure-change-me":
