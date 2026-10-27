@@ -24,7 +24,7 @@ export default function LoginPage() {
         setMode(s.has_user ? "login" : "register");
         setSignupsOpen(s.signups_open);
       })
-      .catch(() => setError("Can't reach the backend. Is the API server running on port 8000?"));
+      .catch((e) => setError((e as Error).message));
   }, []);
 
   function switchTo(next: "login" | "register" | "reset") {
